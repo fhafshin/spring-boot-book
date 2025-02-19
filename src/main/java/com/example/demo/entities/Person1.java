@@ -18,6 +18,6 @@ public class Person1 extends BaseEntity {
 @Column(name = "lastname")
    private String lastname;
 
-@Column(scale = 6,nullable = false,unique = true,updatable = false)
-   private BigDecimal test;
+//@Column(scale = 6,nullable = false,unique = true,updatable = false)
+//   private BigDecimal test;
 }

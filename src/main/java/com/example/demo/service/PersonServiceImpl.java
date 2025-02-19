@@ -2,6 +2,7 @@ package com.example.demo.service;
 
 import com.example.demo.entities.Person1;
 import com.example.demo.repository.PersonRepository;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -50,5 +51,15 @@ public class PersonServiceImpl implements PersonService {
     @Override
     public String test() {
         return "this is a test";
+    }
+
+    @Override
+    public Person1 findByNameAndLastName(String name, String lastname) {
+        return personRepository.findByNameAndLastname(name,lastname).orElseThrow(()->new RuntimeException("person not found"));
+    }
+
+    @Override
+    public Person1 findbyNameStartSTr(String name) {
+        return personRepository.findByNameStartStr(name).orElseThrow(()->new RuntimeException("person not found"));
     }
 }

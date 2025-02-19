@@ -54,4 +54,15 @@ public class PersonController {
 
         return ResponseEntity.ok().build();
     }
+
+    @GetMapping("/find-by-name-lastname")
+    public Person1 findByLastname(@RequestParam("name") String name,@RequestParam("lastname") String lastname)
+    {
+        return personService.findByNameAndLastName(name,lastname);
+    }
+    @GetMapping("/find-by-name-start-str/{name}")
+    public ResponseEntity<Person1> findByName(@PathVariable String name)
+    {
+        return ResponseEntity.ok(personService.findbyNameStartSTr(name));
+    }
 }
