@@ -1,45 +1,20 @@
 package com.example.demo.service;
 
 import com.example.demo.entities.Person1;
-import com.example.demo.repository.PersonRepository;
-import org.springframework.stereotype.Service;
 
 import java.util.List;
 
-@Service
-public class PersonService {
+public interface PersonService {
 
-    private final PersonRepository personRepository;
+    public Person1 save(Person1 person);
 
-    public PersonService(PersonRepository personRepository) {
-        this.personRepository = personRepository;
-    }
+    public Person1 update(Person1 person);
 
-    public Person1 save(Person1 person) {
-        return personRepository.save(person);
-    }
+    public void delete(Long id);
 
-    public Person1 update(Person1 person) {
-        Person1 personSelected = personRepository
-                .findById(person.getId()).orElseThrow(() -> new RuntimeException("person not found"));
-        personSelected.setName(person.getName());
-        personSelected.setLastname(person.getLastname());
+    public List<Person1> findAll();
 
-        return personRepository.save(personSelected);
-    }
+    public Person1 findOne(Long id);
 
-    public List<Person1> findAll() {
-
-        return personRepository.findAll();
-    }
-
-    public Person1 findOne(Long id) {
-
-        return personRepository.findById(id).orElseThrow(() -> new RuntimeException("person not found"));
-    }
-
-    public void delete(Long id) {
-
-        personRepository.deleteById(id);
-    }
+    public String test();
 }

@@ -27,6 +27,11 @@ public class PersonController {
         return ResponseEntity.ok(new_person);
     }
 
+    @GetMapping("/test")
+    public String test() {
+        return personService.test();
+    }
+
     @PutMapping("/update")
     public ResponseEntity<Person1> update(@RequestBody Person1 person) {
 
