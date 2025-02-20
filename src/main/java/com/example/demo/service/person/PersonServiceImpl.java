@@ -1,8 +1,8 @@
-package com.example.demo.service;
+package com.example.demo.service.person;
 
 import com.example.demo.entities.Person1;
 import com.example.demo.repository.PersonRepository;
-import org.springframework.http.ResponseEntity;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -55,11 +55,23 @@ public class PersonServiceImpl implements PersonService {
 
     @Override
     public Person1 findByNameAndLastName(String name, String lastname) {
-        return personRepository.findByNameAndLastname(name,lastname).orElseThrow(()->new RuntimeException("person not found"));
+        return personRepository.findByNameAndLastname(name, lastname).orElseThrow(() -> new RuntimeException("person not found"));
     }
 
     @Override
-    public Person1 findbyNameStartSTr(String name) {
-        return personRepository.findByNameStartStr(name).orElseThrow(()->new RuntimeException("person not found"));
+    public Person1 findByNameStartSTr(String name) {
+        return personRepository.findByNameStartStr(name).orElseThrow(() -> new RuntimeException("person not found"));
+    }
+
+    @Override
+    public Person1 findByCreation() {
+        Sort sort = Sort.by(Sort.Order.desc("creationDate"));
+        return personRepository.findTopByCreationDateNotNull(sort).orElseThrow(() -> new RuntimeException("person not found"));
+    }
+
+    @Override
+    public List<Person1> findAllBySortingCreatedDate() {
+        Sort sort=Sort.by(Sort.Order.desc(("creationDate")));
+        return personRepository.findAll(sort);
     }
 }

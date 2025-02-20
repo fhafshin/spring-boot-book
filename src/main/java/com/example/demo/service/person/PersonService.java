@@ -1,7 +1,6 @@
-package com.example.demo.service;
+package com.example.demo.service.person;
 
 import com.example.demo.entities.Person1;
-import org.springframework.http.ResponseEntity;
 
 import java.util.List;
 
@@ -21,5 +20,10 @@ public interface PersonService {
 
     public Person1 findByNameAndLastName(String name, String lastname);
 
-   public Person1 findbyNameStartSTr(String name);
+   public Person1 findByNameStartSTr(String name);
+
+   public Person1 findByCreation();
+
+   public List<Person1> findAllBySortingCreatedDate();
+
 }

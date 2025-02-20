@@ -1,7 +1,7 @@
 package com.example.demo.controller;
 
 import com.example.demo.entities.Person1;
-import com.example.demo.service.PersonService;
+import com.example.demo.service.person.PersonService;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -63,6 +63,19 @@ public class PersonController {
     @GetMapping("/find-by-name-start-str/{name}")
     public ResponseEntity<Person1> findByName(@PathVariable String name)
     {
-        return ResponseEntity.ok(personService.findbyNameStartSTr(name));
+        return ResponseEntity.ok(personService.findByNameStartSTr(name));
+    }
+
+    @GetMapping("/find-last-user")
+
+    public ResponseEntity<Person1> findByCreation(){
+
+
+        return ResponseEntity.ok(personService.findByCreation());
+    }
+
+    @GetMapping("/find-all-sorting-by-created-date")
+    public List<Person1> findAllSortingByCreatedDate() {
+        return personService.findAllBySortingCreatedDate();
     }
 }
