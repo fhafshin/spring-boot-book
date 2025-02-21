@@ -28,4 +28,8 @@ public class BaseEntityBook {
     private LocalDateTime lastModifiedDate;
 
 
+    @Column
+    private LocalDateTime deleted;
+
+
 }

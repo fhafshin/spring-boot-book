@@ -3,7 +3,7 @@ package com.example.demo.service.user;
 import com.example.demo.dto.request.UserRequest;
 import com.example.demo.dto.response.UserResponse;
 import com.example.demo.entities.User;
-import com.example.demo.exception.RoleException;
+import com.example.demo.exception.RuleException;
 import com.example.demo.repository.UserRepository;
 import org.springframework.stereotype.Service;
 
@@ -23,7 +23,7 @@ public class UserServiceImpl implements UserService {
 
         Optional<User> username = userRepository.findByUsername(user.username());
         if (username.isPresent())
-            throw new RoleException("user.is.exist");
+            throw new RuleException("user.is.exist");
 
         var newUser = userRepository.save(createUserRequest(user));
         return createUserResponse(newUser);

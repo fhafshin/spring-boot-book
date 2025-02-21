@@ -1,8 +1,8 @@
 package com.example.demo.entities;
 
+import com.example.demo.common.enums.Payed;
 import jakarta.persistence.*;
-import lombok.Getter;
-import lombok.Setter;
+import lombok.*;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -11,6 +11,9 @@ import java.util.List;
 @Table(name = "factor",schema = SchemaName.SchemaName)
 @Getter
 @Setter
+@Builder
+@AllArgsConstructor
+@NoArgsConstructor
 public class Factor extends BaseEntityBook{
     @ManyToOne
     @JoinColumn(name = "user_id")
@@ -18,5 +21,11 @@ public class Factor extends BaseEntityBook{
 
     @OneToMany(mappedBy = "factor")
     private List<ShoppingCard> shoppingCards = new ArrayList<>();
+
+
+    @Enumerated(EnumType.STRING)
+    private Payed payed;
+
+
 
 }
